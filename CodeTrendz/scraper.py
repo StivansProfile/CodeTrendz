@@ -14,10 +14,12 @@ if response.status_code == 200:
     )
 
     specific_div = soup.find("div", class_="topcard__flavor-row")
+    info_div = soup.find("div", class_="description__text description__text--rich")
 
     if specific_a:
         print(specific_a.text)
         print(specific_div.text)
+        print(info_div.text)
     else:
         print("Nothing found")
 
