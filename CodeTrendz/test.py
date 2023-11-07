@@ -1,7 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = "https://uk.linkedin.com/jobs/view/graduate-software-engineer-at-tiptopjob-3735488680?refId=kPs1jZXLvXv6E0UecvcwJA%3D%3D&trackingId=%2Bj%2FtjgizlfyKYiRaacXWaw%3D%3D&trk=public_jobs_topcard-title"
+"""
+https://uk.linkedin.com/jobs/view/graduate-software-engineer-at-tiptopjob-3735488680?refId=kPs1jZXLvXv6E0UecvcwJA%3D%3D&trackingId=%2Bj%2FtjgizlfyKYiRaacXWaw%3D%3D&trk=public_jobs_topcard-title
+https://uk.linkedin.com/jobs/view/junior-java-developer-at-pepper-mill-3737609892?refId=u1xcaZ1PXKYa6pXOPMw9aQ%3D%3D&trackingId=AwZrzZ9Sg%2BLrfWSLfz%2FTeA%3D%3D&trk=public_jobs_topcard-title
+"""
+
+
+url = "https://uk.linkedin.com/jobs/view/junior-java-developer-at-pepper-mill-3737609892?refId=u1xcaZ1PXKYa6pXOPMw9aQ%3D%3D&trackingId=AwZrzZ9Sg%2BLrfWSLfz%2FTeA%3D%3D&trk=public_jobs_topcard-title"
 
 response = requests.get(url)
 
