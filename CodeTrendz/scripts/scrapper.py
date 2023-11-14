@@ -1,11 +1,17 @@
+from bs4 import BeautifulSoup
+import requests
+
+
 class Web_Scrapper:  # web scrapper design
     def __init__(self, platform_to_scrape, number_of_job_posts):
         self.platform_to_scrape = platform_to_scrape
         self.num_of_job_posts = number_of_job_posts
 
+    def scrape_linkedIn(self):
+        pass
 
-job_posts = 5
-scrapper = Web_Scrapper("LinkedIn", job_posts)
+    def scrape(self):
+        response = requests.get(self.platform_to_scrape)
 
-print(scrapper.platform_to_scrape)
-print(scrapper.num_of_job_posts)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.text, "html.parser")
