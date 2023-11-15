@@ -4,6 +4,9 @@ import requests
 # ! Linked In only for now
 
 
+# https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25
+
+
 class Web_Scrapper:
     def __init__(self, platform_to_scrape, number_of_job_posts):
         self.platform_to_scrape = platform_to_scrape
