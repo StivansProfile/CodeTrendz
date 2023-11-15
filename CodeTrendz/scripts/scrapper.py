@@ -4,17 +4,14 @@ import requests
 # ! Linked In only for now
 
 """
-To scrape multiple pages:
-https://uk.linkedin.com/jobs/software-engineer-jobs?currentJobId=3758062458&position=1&pageNum=0
+https://www.google.com/search?client=firefox-b-d&q=software+developer+jobs+uk+linked+in&ibp=htl;jobs&sa=X&ved=2ahUKEwjZmcfeqcaCAxWMXUEAHQI9A5sQudcGKAF6BAgVECo&sxsrf=AM9HkKkatznxLrfouDM610IxeNrqhFcBKQ:1700062339130#htivrt=jobs&htidocid=-L0s1oDT06XlRSxWAAAAAA%3D%3D&fpstate=tldetail
 
-collect the ulrs based on position
-- scrape the whole page and find the urls with position 1 to maybe 50
-- find a way to click on each url and for each url perform the scrapping function
+we can probably scrape the job urls from the above link
 
 """
 
 
-class Web_Scrapper:  # web scrapper design
+class Web_Scrapper:
     def __init__(self, platform_to_scrape, number_of_job_posts):
         self.platform_to_scrape = platform_to_scrape
         self.num_of_job_posts = number_of_job_posts
@@ -23,25 +20,15 @@ class Web_Scrapper:  # web scrapper design
         self.company_name = ""
         self.job_description = ""
 
-    # find the first 10 job posts
+    # find the first 10 job posts' urls
     def find_job_urls(self):
         response = requests.get(self.platform_to_scrape)
 
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
 
-        # Find all anchor tags within the specified positions (1 to 10)
-        for position in range(1, 11):
-            urls = soup.find_all("li")
-
-            # for url in urls:
-            #     if url.has_attr("class") and f"&position{position}" in url["class"]:
-            #         self.job_urls.append(url)
-
-            print(urls)
-
         else:
-            print(f"Failed to retrieve the page. Status code: {response.status_code}")
+            print("error", response.status_code)
 
     # scrape the data off of the first 10 job posts
     def scrape(self):
@@ -73,7 +60,7 @@ class Web_Scrapper:  # web scrapper design
 
 
 web_scrapper = Web_Scrapper(
-    "https://uk.linkedin.com/jobs/software-engineer-jobs",
+    "https://www.linkedin.com/jobs/search/?currentJobId=3744358098&keywords=software%20developer&origin=SUGGESTION",
     5,
 )
 web_scrapper.find_job_urls()
