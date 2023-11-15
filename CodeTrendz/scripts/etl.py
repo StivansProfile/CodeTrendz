@@ -13,13 +13,17 @@ scrapper = Web_Scrapper(
 job_postings = []
 scrapper.scrape()
 
-for description in scrapper.job_description:
+cleaned_job_descriptions = [
+    "\n".join([line for line in s.splitlines() if line.strip()])
+    for s in scrapper.job_description
+]
+
+for description in cleaned_job_descriptions:
     data_obj = {"title": "", "description": description}
     job_postings.append(data_obj)
 
 
 csv_file_name = "./data/linkedin_data.csv"
-
 field_names = ["title", "description"]
 
 with open(csv_file_name, mode="w", newline="", encoding="utf-8") as file:
