@@ -3,13 +3,6 @@ import requests
 
 # ! Linked In only for now
 
-"""
-https://www.google.com/search?client=firefox-b-d&q=software+developer+jobs+uk+linked+in&ibp=htl;jobs&sa=X&ved=2ahUKEwjZmcfeqcaCAxWMXUEAHQI9A5sQudcGKAF6BAgVECo&sxsrf=AM9HkKkatznxLrfouDM610IxeNrqhFcBKQ:1700062339130#htivrt=jobs&htidocid=-L0s1oDT06XlRSxWAAAAAA%3D%3D&fpstate=tldetail
-
-we can probably scrape the job urls from the above link
-
-"""
-
 
 class Web_Scrapper:
     def __init__(self, platform_to_scrape, number_of_job_posts):
@@ -26,6 +19,9 @@ class Web_Scrapper:
 
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
+            divs = soup.find_all("div", class_="base-search-card__info")
+
+            print(divs)
 
         else:
             print("error", response.status_code)
@@ -60,7 +56,7 @@ class Web_Scrapper:
 
 
 web_scrapper = Web_Scrapper(
-    "https://www.linkedin.com/jobs/search/?currentJobId=3744358098&keywords=software%20developer&origin=SUGGESTION",
+    "https://www.linkedin.com/jobs/search/?currentJobId=3727684236&geoId=101165590&keywords=software%20engineer&location=United%20Kingdom&origin=JOB_SEARCH_PAGE_KEYWORD_AUTOCOMPLETE&refresh=true",
     5,
 )
 web_scrapper.find_job_urls()
