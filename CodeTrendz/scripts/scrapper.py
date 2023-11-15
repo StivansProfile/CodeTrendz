@@ -16,20 +16,25 @@ class Web_Scrapper:
         self.company_name = ""
         self.job_description = ""
 
-    # find the first 10 job posts' urls
+    # find the job post urls
     def find_job_urls(self):
         response = requests.get(self.platform_to_scrape)
 
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, "html.parser")
-            divs = soup.find_all("div", class_="base-search-card__info")
+            links = soup.find_all(
+                "a",
+                class_="base-card__full-link absolute top-0 right-0 bottom-0 left-0 p-0 z-[2]",
+            )
 
-            print(divs)
+            for link in links:
+                href = link.get("href")
+                self.job_urls.append(href)
 
         else:
             print("error", response.status_code)
 
-    # scrape the data off of the first 10 job posts
+    # scrape the data off of the job urls
     def scrape(self):
         response = requests.get(self.platform_to_scrape)
 
@@ -59,7 +64,7 @@ class Web_Scrapper:
 
 
 web_scrapper = Web_Scrapper(
-    "https://www.linkedin.com/jobs/search/?currentJobId=3727684236&geoId=101165590&keywords=software%20engineer&location=United%20Kingdom&origin=JOB_SEARCH_PAGE_KEYWORD_AUTOCOMPLETE&refresh=true",
+    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25",
     5,
 )
 web_scrapper.find_job_urls()
