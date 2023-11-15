@@ -6,15 +6,18 @@ import requests
 
 # https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25
 
+"""
+At the moment the scrapper can do the following:
+- Find a custom number of job urls from LinkedIn
+- Scrape the job descriptions off of the job urls
+"""
+
 
 class Web_Scrapper:
     def __init__(self, platform_to_scrape, number_of_job_posts):
         self.platform_to_scrape = platform_to_scrape
         self.num_of_job_posts = number_of_job_posts
-
         self.job_urls = []
-        self.company_name = ""
-        self.job_description = ""
 
     # find the job post urls
     def find_job_urls(self):
