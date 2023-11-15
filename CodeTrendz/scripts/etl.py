@@ -1,6 +1,7 @@
 # cleaning job data and storing it in an csv
 # so we can later perform the topic modelling on the data
 from scrapper import Web_Scrapper
+import csv
 
 # https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25
 
@@ -16,4 +17,13 @@ for description in scrapper.job_description:
     data_obj = {"title": "", "description": description}
     job_postings.append(data_obj)
 
-print(job_postings)
+
+csv_file_name = "./data/linkedin_data.csv"
+
+field_names = ["title", "description"]
+
+with open(csv_file_name, mode="w", newline="", encoding="utf-8") as file:
+    writer = csv.DictWriter(file, fieldnames=field_names)
+
+    writer.writeheader()
+    writer.writerows(job_postings)

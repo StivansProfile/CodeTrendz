@@ -64,10 +64,10 @@ class Web_Scrapper:
                 job_description = soup.find(
                     "div", class_="description__text description__text--rich"
                 )
-                self.job_description.append(job_description)
+                self.job_description.append(job_description.text)
 
-                print(self.company_name)
-                print(container.text)
+                # print(self.company_name)
+                # print(container.text)
                 print(self.job_description)
             else:
                 print("Failed to retrieve data", response.status_code)
