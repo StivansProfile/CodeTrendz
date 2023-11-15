@@ -19,6 +19,9 @@ class Web_Scrapper:
         self.num_of_job_posts = number_of_job_posts
         self.job_urls = []
 
+        self.company_name = []
+        self.job_description = []
+
     # find the job post urls
     def find_job_urls(self):
         response = requests.get(self.platform_to_scrape)
@@ -34,40 +37,44 @@ class Web_Scrapper:
                 href = link.get("href")
                 self.job_urls.append(href)
 
+            print(self.job_urls)
+
         else:
             print("error", response.status_code)
 
     # scrape the data off of the job urls
     def scrape(self):
-        response = requests.get(self.platform_to_scrape)
+        self.find_job_urls()
 
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, "html.parser")
+        for url in self.job_urls:
+            response = requests.get(url)
 
-            # finding the company name
-            self.company_name = soup.find(
-                "h1",
-                class_="top-card-layout__title font-sans text-lg papabear:text-xl font-bold leading-open text-color-text mb-0 topcard__title",
-            )
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, "html.parser")
 
-            # finding job description
-            container = soup.find("div", class_="topcard__flavor-row")
-            self.job_description = soup.find(
-                "div", class_="description__text description__text--rich"
-            )
+                # finding the company name
+                company_name = soup.find(
+                    "h1",
+                    class_="top-card-layout__title font-sans text-lg papabear:text-xl font-bold leading-open text-color-text mb-0 topcard__title",
+                )
+                self.company_name.append(company_name)
 
-            if self.company_name:
-                print(self.company_name.text)
+                # finding job description
+                container = soup.find("div", class_="topcard__flavor-row")
+                job_description = soup.find(
+                    "div", class_="description__text description__text--rich"
+                )
+                self.job_description.append(job_description)
+
+                print(self.company_name)
                 print(container.text)
-                print(self.job_description.text)
+                print(self.job_description)
             else:
-                print("Nothing found")
-        else:
-            print("Failed to retrieve data", response.status_code)
+                print("Failed to retrieve data", response.status_code)
 
 
 web_scrapper = Web_Scrapper(
     "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25",
     5,
 )
-web_scrapper.find_job_urls()
+web_scrapper.scrape()
