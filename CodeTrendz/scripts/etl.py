@@ -11,17 +11,26 @@ scrapper = Web_Scrapper(
     5,
 )
 
-job_postings = []
-scrapper.scrape()
 
-cleaned_job_descriptions = [
-    "\n".join([line for line in s.splitlines() if line.strip()])
-    for s in scrapper.job_description
-]
+class ExtractAndRun:
+    def __init__(self) -> None:
+        pass
 
-for description in cleaned_job_descriptions:
-    data_obj = {"title": "", "description": description}
-    job_postings.append(data_obj)
+    def run(self):
+        job_postings = []
+        scrapper.scrape()
+
+        cleaned_job_descriptions = [
+            "\n".join([line for line in s.splitlines() if line.strip()])
+            for s in scrapper.job_description
+        ]
+
+        for description in cleaned_job_descriptions:
+            data_obj = {"title": "", "description": description}
+            job_postings.append(data_obj)
+
+        modelling = TopicModelling(job_postings)
+        modelling.start_modelling()
 
 
 # csv_file_name = "./data/linkedin_data.csv"
@@ -32,7 +41,3 @@ for description in cleaned_job_descriptions:
 
 #     writer.writeheader()
 #     writer.writerows(job_postings)
-
-
-modelling = TopicModelling(job_postings)
-modelling.start_modelling()
