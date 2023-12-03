@@ -70,24 +70,8 @@ class Web_Scrapper:
             else:
                 print("Failed to retrieve data", response.status_code)
 
-    def scrape_skills(self):
-        response = requests.get(
-            "https://www.linkedin.com/jobs/view/junior-software-engineer-at-mytos-3763343357/"
-        )
-
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, "html.parser")
-
-            # find relevant skills
-            button = soup.find(
-                "a",
-                class_="app-aware-link",
-            )
-            print(button)
-
 
 web_scrapper = Web_Scrapper(
-    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=100",
+    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25",
     5,
 )
-web_scrapper.scrape()
