@@ -72,10 +72,6 @@ class Web_Scrapper:
                 # print(self.job_description)
 
                 # find relevant skills
-                div_with_p5 = soup.find("div", class_="pt5")
-                self.skills.append(div_with_p5)
-
-                print(self.skills)
 
             else:
                 print("Failed to retrieve data", response.status_code)
