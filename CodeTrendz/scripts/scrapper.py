@@ -21,6 +21,7 @@ class Web_Scrapper:
 
         self.company_name = []
         self.job_description = []
+        self.skills = []
 
     # find the job post urls
     def find_job_urls(self):
@@ -52,29 +53,36 @@ class Web_Scrapper:
             if response.status_code == 200:
                 soup = BeautifulSoup(response.text, "html.parser")
 
-                # finding the company name
-                company_name = soup.find(
-                    "h1",
-                    class_="top-card-layout__title font-sans text-lg papabear:text-xl font-bold leading-open text-color-text mb-0 topcard__title",
-                )
-                self.company_name.append(company_name)
+                # # finding the company name
+                # company_name = soup.find(
+                #     "h1",
+                #     class_="top-card-layout__title font-sans text-lg papabear:text-xl font-bold leading-open text-color-text mb-0 topcard__title",
+                # )
+                # self.company_name.append(company_name)
 
-                # finding job description
-                container = soup.find("div", class_="topcard__flavor-row")
-                job_description = soup.find(
-                    "div", class_="description__text description__text--rich"
-                )
-                self.job_description.append(job_description.text)
+                # # finding job description
+                # container = soup.find("div", class_="topcard__flavor-row")
+                # job_description = soup.find(
+                #     "div", class_="description__text description__text--rich"
+                # )
+                # self.job_description.append(job_description.text)
 
-                # print(self.company_name)
-                # print(container.text)
-                print(self.job_description)
+                # # print(self.company_name)
+                # # print(container.text)
+                # print(self.job_description)
+
+                # find relevant skills
+                div_with_p5 = soup.find("div", class_="pt5")
+                self.skills.append(div_with_p5)
+
+                print(self.skills)
+
             else:
                 print("Failed to retrieve data", response.status_code)
 
 
 web_scrapper = Web_Scrapper(
-    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25",
+    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=0",
     5,
 )
 web_scrapper.scrape()
