@@ -6,8 +6,13 @@ nav{
   background-color: rgb(36, 36, 108);
 }
 
+.nav-logo{
+  margin-left: 20px;
+}
+
 .nav-links{
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  gap: 30px;
+  margin-right: 20px;
 }
