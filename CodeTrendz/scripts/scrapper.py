@@ -15,6 +15,11 @@ class Web_Scrapper:
         self.platform_to_scrape = platform_to_scrape
         self.num_of_job_posts = number_of_job_posts
         self.job_urls = []
+        self.platforms_to_scrape = [
+            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=0",
+            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25",
+            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=50",
+        ]
 
         self.company_name = []
         self.job_description = []
@@ -22,23 +27,24 @@ class Web_Scrapper:
 
     # find the job post urls
     def find_job_urls(self):
-        response = requests.get(self.platform_to_scrape)
+        for platform in self.platforms_to_scrape:
+            response = requests.get(platform)
 
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, "html.parser")
-            links = soup.find_all(
-                "a",
-                class_="base-card__full-link absolute top-0 right-0 bottom-0 left-0 p-0 z-[2]",
-            )
+            if response.status_code == 200:
+                soup = BeautifulSoup(response.text, "html.parser")
+                links = soup.find_all(
+                    "a",
+                    class_="base-card__full-link absolute top-0 right-0 bottom-0 left-0 p-0 z-[2]",
+                )
 
-            for link in links:
-                href = link.get("href")
-                self.job_urls.append(href)
+                for link in links:
+                    href = link.get("href")
+                    self.job_urls.append(href)
 
-            print(self.job_urls)
+                print(self.job_urls)
 
-        else:
-            print("error", response.status_code)
+            else:
+                print("error", response.status_code)
 
     # scrape the data off of the job urls
     def scrape(self):
