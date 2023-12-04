@@ -16,9 +16,9 @@ class Web_Scrapper:
         self.num_of_job_posts = number_of_job_posts
         self.job_urls = []
         self.platforms_to_scrape = [
-            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=0",
-            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25",
-            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=50",
+            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=web%20developer&originalSubdomain=uk&start=0",
+            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=web%20developer&originalSubdomain=uk&start=25",
+            "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=web%20developer&originalSubdomain=uk&start=50",
         ]
 
         self.company_name = []
