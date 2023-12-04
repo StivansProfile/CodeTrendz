@@ -14,14 +14,13 @@ web_scrapper.scrape()
 # Sample unstructured job posting text
 job_posting_texts = web_scrapper.job_description
 
+# Initialize lists to store extracted skills, programming languages, and education
+skills = []
+programming_languages = []
+education = []
 
 for text in job_posting_texts:
     doc = nlp(text)
-
-    # Initialize lists to store extracted skills, programming languages, and education
-    skills = []
-    programming_languages = []
-    education = []
 
     # Define keywords related to skills, programming languages, and education
     skill_keywords = ["skills", "abilities", "experience", "knowledge"]
@@ -85,8 +84,10 @@ skill_counts = data["Skills"].value_counts()
 lang_counts = data["Programming Languages"].value_counts()
 edu_counts = data["Education Requirements"].value_counts()
 
+top_skills = skill_counts.head(10)
+
 # Plotting
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(8, 6))
 
 plt.subplot(3, 1, 1)
 skill_counts.plot(kind="bar", color="skyblue")
@@ -100,11 +101,11 @@ plt.ylabel("Count")
 # plt.xlabel("Language")
 # plt.ylabel("Count")
 
-plt.subplot(3, 1, 3)
-edu_counts.plot(kind="bar", color="lightgreen")
-plt.title("Education Requirements")
-plt.xlabel("Education")
-plt.ylabel("Count")
+# plt.subplot(3, 1, 3)
+# edu_counts.plot(kind="bar", color="lightgreen")
+# plt.title("Education Requirements")
+# plt.xlabel("Education")
+# plt.ylabel("Count")
 
-plt.tight_layout()
-plt.show()
+# plt.tight_layout()
+# plt.show()
