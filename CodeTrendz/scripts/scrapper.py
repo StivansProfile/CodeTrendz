@@ -72,6 +72,6 @@ class Web_Scrapper:
 
 
 web_scrapper = Web_Scrapper(
-    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=25",
+    "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?currentJobId=3744358098&keywords=software%20developer&originalSubdomain=uk&start=150",
     5,
 )
