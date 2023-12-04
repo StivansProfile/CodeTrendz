@@ -1,6 +1,5 @@
 import spacy, csv
 import pandas as pd
-import matplotlib.pyplot as plt
 from scrapper import Web_Scrapper
 
 nlp = spacy.load("en_core_web_sm")
@@ -85,27 +84,3 @@ lang_counts = data["Programming Languages"].value_counts()
 edu_counts = data["Education Requirements"].value_counts()
 
 top_skills = skill_counts.head(10)
-
-# Plotting
-plt.figure(figsize=(8, 6))
-
-plt.subplot(3, 1, 1)
-skill_counts.plot(kind="bar", color="skyblue")
-plt.title("Skills")
-plt.xlabel("Skill")
-plt.ylabel("Count")
-
-# plt.subplot(3, 1, 2)
-# lang_counts.plot(kind="bar", color="salmon")
-# plt.title("Programming Languages")
-# plt.xlabel("Language")
-# plt.ylabel("Count")
-
-# plt.subplot(3, 1, 3)
-# edu_counts.plot(kind="bar", color="lightgreen")
-# plt.title("Education Requirements")
-# plt.xlabel("Education")
-# plt.ylabel("Count")
-
-# plt.tight_layout()
-# plt.show()
