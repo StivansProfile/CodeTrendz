@@ -6,6 +6,16 @@
 that are included in the job postings data. The topics are then presented nicely by using graphs. This allows the users to look at information that they may find useful when
 studying the job market.</p>
 
+<h1>What else does it do ?</h1>
+<h4>The main functionalities of this project are:</h4>
+<ul>
+  <li>Finding key topics and words within job posts such as: "ai", "web", "team work"</li>
+  <li>Finding the most relevant programming languages and technologies</li>
+  <li>Figuring out what percentage of jobs require a university degree</li>
+  <li>Displaying salary ranges</li>
+  <li>Providing users with the locations of jobs</li>
+</ul>
+
 <h1>Technologies used</h1>
 <ul>
   <li>Python</li>
@@ -13,5 +23,6 @@ studying the job market.</p>
   <li>NLTK - for data clening and tokenization</li>
   <li>Gensim - for creating a corpus and a dictionary</li>
   <li><a href="https://towardsdatascience.com/latent-dirichlet-allocation-lda-9d1cd064ffa2">The LDA model</a></li>
+  <li>Scrapy's language model - for finding relevant skills and programming languages</li>
 </ul>
 
