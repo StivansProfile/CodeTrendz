@@ -1,0 +1,13 @@
+nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(36, 36, 108);
+}
+
+.nav-links{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
