@@ -1,4 +1,6 @@
-import spacy
+import spacy, csv
+import pandas as pd
+import matplotlib.pyplot as plt
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -97,3 +99,54 @@ education = list(set(education))
 print("Extracted Skills:", skills)
 print("Extracted Programming Languages:", programming_languages)
 print("Extracted Education Requirements:", education)
+
+
+file_path = "C:\\Users\\disco\\Desktop\\Programming\Portfolio\\CodeTrendzRepo\\CodeTrendz\\scripts\\data\\skills_data.csv"
+
+# Saving the extracted information to a CSV file
+with open(file_path, mode="w", newline="", encoding="utf-8") as file:
+    writer = csv.writer(file)
+
+    # Write headers
+    writer.writerow(["Skills", "Programming Languages", "Education Requirements"])
+
+    # Combine lists into rows to ensure each row has all data
+    max_length = max(len(skills), len(programming_languages), len(education))
+    for i in range(max_length):
+        skill = skills[i] if i < len(skills) else ""
+        lang = programming_languages[i] if i < len(programming_languages) else ""
+        edu = education[i] if i < len(education) else ""
+        writer.writerow([skill, lang, edu])
+
+print("Data saved to 'skills_data.csv'")
+
+data = pd.read_csv(file_path)
+
+# Count occurrences of each column
+skill_counts = data["Skills"].value_counts()
+lang_counts = data["Programming Languages"].value_counts()
+edu_counts = data["Education Requirements"].value_counts()
+
+# Plotting
+plt.figure(figsize=(10, 6))
+
+plt.subplot(3, 1, 1)
+skill_counts.plot(kind="bar", color="skyblue")
+plt.title("Skills")
+plt.xlabel("Skill")
+plt.ylabel("Count")
+
+# plt.subplot(3, 1, 2)
+# lang_counts.plot(kind="bar", color="salmon")
+# plt.title("Programming Languages")
+# plt.xlabel("Language")
+# plt.ylabel("Count")
+
+plt.subplot(3, 1, 3)
+edu_counts.plot(kind="bar", color="lightgreen")
+plt.title("Education Requirements")
+plt.xlabel("Education")
+plt.ylabel("Count")
+
+plt.tight_layout()
+plt.show()
