@@ -18,6 +18,73 @@ skills = []
 programming_languages = []
 education = []
 
+languages_technologies = [
+    "Python",
+    "JavaScript",
+    "Java",
+    "C++",
+    "C#",
+    "PHP",
+    "Ruby",
+    "Swift",
+    "TypeScript",
+    "Kotlin",
+    "Go",
+    "Rust",
+    "Perl",
+    "Objective-C",
+    "Scala",
+    "HTML/CSS",
+    "SQL",
+    "Shell",
+    "Assembly",
+    "R",
+    "Matlab",
+    "Dart",
+    "Haskell",
+    "Groovy",
+    "Lua",
+    "VB.NET",
+    "VBA",
+    "COBOL",
+    "Fortran",
+    "Ada",
+    "Lisp",
+    "Scheme",
+    "Prolog",
+    "Smalltalk",
+    "Erlang",
+    "Clojure",
+    "F#",
+    "Verilog",
+    "VHDL",
+    "LabVIEW",
+    "React",
+    "Angular",
+    "Vue.js",
+    "Node.js",
+    "Express.js",
+    "Django",
+    "Flask",
+    "Ruby on Rails",
+    "Spring Framework",
+    "ASP.NET",
+    "Laravel",
+    "Symfony",
+    "TensorFlow",
+    "PyTorch",
+    "Keras",
+    "Spark",
+    "Hadoop",
+    "MongoDB",
+    "MySQL",
+    "PostgreSQL",
+    "Redis",
+    # ... Feel free to add more languages, frameworks, or technologies here
+]
+
+found_languages = []
+
 for text in job_posting_texts:
     doc = nlp(text)
 
@@ -83,4 +150,12 @@ skill_counts = data["Skills"].value_counts()
 lang_counts = data["Programming Languages"].value_counts()
 edu_counts = data["Education Requirements"].value_counts()
 
-top_skills = skill_counts.head(10)
+# Function to check for presence of items from the array in the CSV file
+present_items = []
+with open(file_path, "r") as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        skill = row["Skills"]
+        if skill in languages_technologies:
+            present_items.append(skill)
+            print(present_items)
