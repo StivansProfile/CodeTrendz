@@ -44,7 +44,9 @@ class TopicModelling:
         corpus = [dictionary.doc2bow(tokens) for tokens in df["tokens"]]
 
         # Train an LDA model ---------------------
-        lda_model = models.LdaModel(corpus, num_topics=5, id2word=dictionary, passes=15)
+        lda_model = models.LdaModel(
+            corpus, num_topics=10, id2word=dictionary, passes=25
+        )
 
         # Visualize the topics
         vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, dictionary)

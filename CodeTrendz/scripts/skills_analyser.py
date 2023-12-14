@@ -1,6 +1,7 @@
 import spacy, csv
 import pandas as pd
 from scrapper import Web_Scrapper
+import matplotlib.pyplot as plt
 
 nlp = spacy.load("en_core_web_sm")
 
