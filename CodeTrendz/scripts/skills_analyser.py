@@ -82,7 +82,23 @@ languages_technologies = [
     "ASP.Net",
     ".Net",
     "API",
+    "React.js",
+    "Reddis",
+    "APIs",
+    "AJAX",
+    "Ajax",
+    "Next.js",
+    "Kubernetes",
+    "SEO",
+    "Figma",
+    "WordPress",
+    "UX",
+    "UI",
+    "Rust",
+    "Go",
+    "GoLang",
 ]
+file_path = "C:\\Users\\disco\\Desktop\\Programming\Portfolio\\CodeTrendzRepo\\CodeTrendz\\scripts\\data\\skills_data.csv"
 
 
 def scrape_and_store_data():
@@ -140,8 +156,6 @@ def scrape_and_store_data():
         print("Extracted Programming Languages:", programming_languages)
         print("Extracted Education Requirements:", education)
 
-    file_path = "C:\\Users\\disco\\Desktop\\Programming\Portfolio\\CodeTrendzRepo\\CodeTrendz\\scripts\\data\\skills_data.csv"
-
     # Saving the extracted information to a CSV file
     with open(file_path, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
@@ -163,7 +177,8 @@ def scrape_and_store_data():
         print("Data saved to 'skills_data.csv'")
 
 
-file_path = "C:\\Users\\disco\\Desktop\\Programming\Portfolio\\CodeTrendzRepo\\CodeTrendz\\scripts\\data\\skills_data.csv"
+scrape_and_store_data()
+
 df = pd.read_csv(file_path)
 
 # Initialize a dictionary to store occurrences of technologies
