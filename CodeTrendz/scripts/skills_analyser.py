@@ -97,6 +97,18 @@ languages_technologies = [
     "Rust",
     "Go",
     "GoLang",
+    "Azure",
+    "Flask",
+    "Linux",
+    "JS",
+    "Node.js",
+    "Node",
+    "Cloud",
+    "JWT",
+    "Django",
+    "Godot",
+    "Tailwing",
+    "Testing",
 ]
 file_path = "C:\\Users\\disco\\Desktop\\Programming\Portfolio\\CodeTrendzRepo\\CodeTrendz\\scripts\\data\\skills_data.csv"
 
