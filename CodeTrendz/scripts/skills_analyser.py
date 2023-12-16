@@ -2,6 +2,10 @@ import spacy, csv
 import pandas as pd
 from scrapper import Web_Scrapper
 import matplotlib.pyplot as plt
+import firebase_admin
+from firebase_admin import credentials, firestore
+import os
+
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -151,12 +155,24 @@ skill_counts = data["Skills"].value_counts()
 lang_counts = data["Programming Languages"].value_counts()
 edu_counts = data["Education Requirements"].value_counts()
 
+
+item_counts = {item: 0 for item in languages_technologies}
+
 # Function to check for presence of items from the array in the CSV file
-present_items = []
 with open(file_path, "r") as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
-        skill = row["Skills"]
-        if skill in languages_technologies:
-            present_items.append(skill)
-            print(present_items)
+        for key, value in row.items():
+            if value in languages_technologies:
+                item_counts[value] += 1
+
+
+# Visualization - creating a bar graph
+plt.figure(figsize=(12, 6))
+plt.bar(item_counts.keys(), item_counts.values())
+plt.xlabel("Languages/Technologies")
+plt.ylabel("Occurrences")
+plt.title("Occurrences of Languages/Technologies in CSV File")
+plt.xticks(rotation=90)  # Rotate x-axis labels for better readability
+plt.tight_layout()
+plt.show()
