@@ -1,5 +1,7 @@
 # CodeTrendz
 
+![Screenshot 2024-04-18 010253](https://github.com/StivansProfile/CodeTrendz/assets/81162165/82dc99a8-5999-4bd0-bfa5-5cd8856dac55)
+
 <h1>What is it ?</h1>
 <p>This is a project dedicated to helping people understand what is in demand in today's software development job market and save them time with the power of automation.</p>
 <p>The way this app tries to do it is by scrapping job postings and extracting the most relevant topics out of them. This creates a list of key topics and words
